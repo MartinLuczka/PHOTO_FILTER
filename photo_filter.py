@@ -30,13 +30,13 @@ def barevne_schema2():
             prumer = int((r+g+b)/3)
             obrazek.putpixel((x,y), (r , b, r))
             if prumer < 120:
-                obrazek.putpixel((x,y), (29, 113, 186))
+                obrazek.putpixel((x,y), (57,136,164))
             elif prumer >= 120 and prumer < 150:
-                obrazek.putpixel((x,y), (237,196,0))
+                obrazek.putpixel((x,y), (203,98,95))
             elif prumer >= 150 and prumer < 170:
-                obrazek.putpixel((x,y), (178,86,144))
+                obrazek.putpixel((x,y), (103,194,212))
             else:
-                obrazek.putpixel((x,y), (113,179,121))
+                obrazek.putpixel((x,y), (208,148,77))
             y += 1
         x += 1
 
@@ -49,13 +49,13 @@ def barevne_schema3():
             prumer = int((r+g+b)/3)
             obrazek.putpixel((x,y), (r , b, r))
             if prumer < 120:
-                obrazek.putpixel((x,y), (182,230,150))
-            elif prumer >= 120 and prumer < 150:
                 obrazek.putpixel((x,y), (169,94,163))
-            elif prumer >= 150 and prumer < 170:
+            elif prumer >= 120 and prumer < 150:
                 obrazek.putpixel((x,y), (220,58,121))
-            else:
+            elif prumer >= 150 and prumer < 170:
                 obrazek.putpixel((x,y), (22,134,205))
+            else:
+                obrazek.putpixel((x,y), (182,230,150))
             y += 1
         x += 1
 
@@ -77,8 +77,6 @@ elif volba == "3":
     barevne_schema3()
 
 print("Vaše volba se připravuje...")
-
-#display(obrazek) - nefunguje ve VS code
 
 obrazek.show()
 
