@@ -1,0 +1,8 @@
+fotoeditor
+
+min. 3 filty + uživatelské rozhraní, které se bude bavit s uživatelem + výběr filtrů
+
+1. barva - vlasy
+2. barva - tváře
+3. barva - okolí
+4. barva - kůže a pozadí

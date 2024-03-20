@@ -76,7 +76,13 @@ elif volba == "2":
 elif volba == "3":
     barevne_schema3()
 
+else:
+    barevne_schema1()
+    print("Chyba vstupu...Aplikuje se defaultní filtr")
+
 print("Vaše volba se připravuje...")
 
 obrazek.show()
+
+# Program se neukončuje hned, bez volby se zvolí nějaký defaultní filtr, generování náhodného filtru, jak by to šlo urychlit ? - velmi vítaný projekt - dobré ohodnocení, v pythonu můžeme měřit dobu vykonání
 
