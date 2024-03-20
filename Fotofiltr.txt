@@ -7,4 +7,4 @@ min. 3 filty + uživatelské rozhraní, které se bude bavit s uživatelem + vý
 3. barva - okolí
 4. barva - kůže a pozadí
 
-přidat ještě nějaké filtry, udělat filtr bližší uživateli, ještě něco k tomu vymyslet
+přidat ještě nějaké filtry, udělat filtr bližší uživateli, ještě něco k tomu vymyslet, - pohrát si s nastavením cyklu - zesvětlení, čerobílá...všechno možné
