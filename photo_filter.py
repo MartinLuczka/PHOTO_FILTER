@@ -62,16 +62,23 @@ def barevne_schema3():
 print("Vítejte v programu pro úpravu fotek.")
 
 volba = input(
-"""Vyberte si jednu z následujících možností:
+"""Vyberte si jednu z následujících možností:\n
 1) filtr barev č.1
 2) filtr barev č.2
-3) filtr barev č.3""")
+3) filtr barev č.3\n""")
 
 if volba == "1":
     barevne_schema1()
 
+elif volba == "2":
+    barevne_schema2()
+
+elif volba == "3":
+    barevne_schema3()
+
+print("Vaše volba se připravuje...")
+
 #display(obrazek) - nefunguje ve VS code
 
-barevne_schema1()
 obrazek.show()
 
