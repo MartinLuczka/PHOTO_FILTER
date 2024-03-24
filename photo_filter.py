@@ -196,6 +196,13 @@ def ztmaveni_filtr(faktor=0.5):
             new_b = max(0, int(b * faktor))
             obrazek.putpixel((x, y), (new_r, new_g, new_b))
 
+def ulozeni_fotky():
+    ulozeni = input("Chcete svůj vygenerovaný obrázek uložit? (ANO/NE)\n").lower()
+
+    if ulozeni == "ano":
+        nazev_souboru = input("Jak chcete, aby se Vaše upravená fotka jmenovala?\n")
+        obrazek.save(f"{nazev_souboru}.jpg", quality=100)
+
 print("Vítejte v programu pro úpravu fotek.\n")
 
 while True:
@@ -272,8 +279,17 @@ while True:
         mix_filtru = True
         uprava = 0
         while True:
+            if uprava == 0:
+                print("Pro namixování nějakého filtru si vyberte z následujících možností:")
+
+            elif uprava == 1:
+                print("Vyberte ještě aspoň jeden filtr:")
+
+            elif uprava > 1:
+                print("Můžete si vybrat další filtry:")
+
             volba = input(
-            """Pro namixování nějakého filtru si vyberte z následujících možností:\n
+            """
             0) z nabízených možností vybrat náhodně
             1) filtr barev č.1
             2) filtr barev č.2
@@ -349,16 +365,8 @@ while True:
 
             volba = 0
 
-            if uprava == 1:
-                print("Přidejte ještě aspoň jeden filtr.\n")
-
             if uprava >= 2:
-
-                ulozeni = input("Chcete svůj vygenerovaný obrázek uložit? (ANO/NE)\n").lower()
-
-                if ulozeni == "ano":
-                    nazev_souboru = input("Jak chcete, aby se Vaše upravená fotka jmenovala?\n")
-                    obrazek.save(f"{nazev_souboru}.jpg", quality=100)
+                ulozeni_fotky()
 
     elif volba == "15":
         print("\nDěkujeme za používání naší aplikace!")
@@ -369,17 +377,12 @@ while True:
         print("Chyba vstupu...Aplikuje se defaultní filtr")
 
     if mix_filtru == False:
-
         print("Vaše volba filtru se aplikuje na obrázek...")
 
         obrazek.show()
 
         volba = 0
 
-        ulozeni = input("Chcete svůj vygenerovaný obrázek uložit? (ANO/NE)\n").lower()
-
-        if ulozeni == "ano":
-            nazev_souboru = input("Jak chcete, aby se Vaše upravená fotka jmenovala?\n")
-            obrazek.save(f"{nazev_souboru}.jpg", quality=100)
+        ulozeni_fotky()
 
 
