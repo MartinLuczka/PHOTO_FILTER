@@ -162,64 +162,121 @@ def pixelizace_filtr(velikost=10):
                     if x + i < sirka and y + j < vyska:
                         obrazek.putpixel((x + i, y + j), (prumer_r, prumer_g, prumer_b))
 
+def zesvetleni_filtr(faktor=1.65):
+    for x in range(sirka):
+        for y in range(vyska):
+            r, g, b = obrazek.getpixel((x, y))
+            new_r = min(255, int(r * faktor))
+            new_g = min(255, int(g * faktor))
+            new_b = min(255, int(b * faktor))
+            obrazek.putpixel((x, y), (new_r, new_g, new_b))
+
+def zvyseni_saturace_a_kontrastu(saturace_faktor=1.7, kontrast_faktor=1.7):
+    for x in range(sirka):
+        for y in range(vyska):
+            r, g, b = obrazek.getpixel((x, y))
+            
+            avg_color = (r + g + b) // 3
+            new_r = min(255, max(0, int(avg_color + saturace_faktor * (r - avg_color))))
+            new_g = min(255, max(0, int(avg_color + saturace_faktor * (g - avg_color))))
+            new_b = min(255, max(0, int(avg_color + saturace_faktor * (b - avg_color))))
+            
+            new_r = min(255, max(0, int((new_r - 128) * kontrast_faktor + 128)))
+            new_g = min(255, max(0, int((new_g - 128) * kontrast_faktor + 128)))
+            new_b = min(255, max(0, int((new_b - 128) * kontrast_faktor + 128)))
+            
+            obrazek.putpixel((x, y), (new_r, new_g, new_b))
+
+def ztmaveni_filtr(faktor=0.5):
+    for x in range(sirka):
+        for y in range(vyska):
+            r, g, b = obrazek.getpixel((x, y))
+            new_r = max(0, int(r * faktor))
+            new_g = max(0, int(g * faktor))
+            new_b = max(0, int(b * faktor))
+            obrazek.putpixel((x, y), (new_r, new_g, new_b))
+
 print("Vítejte v programu pro úpravu fotek.")
 
-volba = input(
-"""Vyberte si jednu z následujících možností:\n
-0) z nabízených možností vybrat náhodně
-1) filtr barev č.1
-2) filtr barev č.2
-3) filtr barev č.3
-4) černobílý filtr
-5) negativní filtr
-6) stará fotografie filtr
-7) filtr rozostření
-8) filtr detekce hran
-9) náhodně barevný filtr
-10) filtr pixelizace
-\n""")
+while True:
+    obrazek = Image.open("oblicej.jpg")
+    sirka, vyska = obrazek.size
 
-if volba == "0":
-    volba = str(random.randint(1, 10))
-    print(volba)
+    volba = input(
+    """Vyberte si jednu z následujících možností:\n
+    0) z nabízených možností vybrat náhodně
+    1) filtr barev č.1
+    2) filtr barev č.2
+    3) filtr barev č.3
+    4) černobílý filtr
+    5) negativní filtr
+    6) stará fotografie filtr
+    7) filtr rozostření
+    8) filtr detekce hran
+    9) náhodně barevný filtr
+    10) filtr pixelizace
+    11) filtr zesvětlení
+    12) filtr pro zvýšení saturace a kontrastu
+    13) filtr ztmavení
+    ----------------------------------------------
+    14) Ukončení aplikace
+    \n""")
 
-if volba == "1":
-    barevne_schema1()
+    if volba == "0":
+        volba = str(random.randint(1, 13))
 
-elif volba == "2":
-    barevne_schema2()
+    if volba == "1":
+        barevne_schema1()
 
-elif volba == "3":
-    barevne_schema3()
+    elif volba == "2":
+        barevne_schema2()
 
-elif volba == "4":
-    cerna_bila()
+    elif volba == "3":
+        barevne_schema3()
 
-elif volba == "5":
-    negativni_filtr()
+    elif volba == "4":
+        cerna_bila()
 
-elif volba == "6":
-    stara_fotografie_filtr()
+    elif volba == "5":
+        negativni_filtr()
 
-elif volba == "7":
-    rozostreni_filtr()
+    elif volba == "6":
+        stara_fotografie_filtr()
 
-elif volba == "8":
-    detekce_hran_filtr()
+    elif volba == "7":
+        rozostreni_filtr()
 
-elif volba == "9":
-    nahodna_barva()
+    elif volba == "8":
+        detekce_hran_filtr()
 
-elif volba == "10":
-    pixelizace_filtr()
+    elif volba == "9":
+        nahodna_barva()
 
-else:
-    barevne_schema1()
-    print("Chyba vstupu...Aplikuje se defaultní filtr")
+    elif volba == "10":
+        pixelizace_filtr()
 
-print("Vaše volba se připravuje...")
+    elif volba == "11":
+        zesvetleni_filtr()
 
-obrazek.show()
+    elif volba == "12":
+        zvyseni_saturace_a_kontrastu()
+
+    elif volba == "13":
+        ztmaveni_filtr()
+
+    elif volba == "14":
+        print("\nDěkujeme za používání naší aplikace!")
+        break
+
+    else:
+        barevne_schema1()
+        print("Chyba vstupu...Aplikuje se defaultní filtr")
+
+    print("Vaše volba se připravuje...")
+
+    obrazek.show()
+
+    volba = 0
 
 # Program se neukončuje hned, bez volby se zvolí nějaký defaultní filtr, generování náhodného filtru, jak by to šlo urychlit ? - velmi vítaný projekt - dobré ohodnocení, v pythonu můžeme měřit dobu vykonání
 
