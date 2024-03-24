@@ -92,18 +92,28 @@ def stara_fotografie_filtr():
             y += 1
         x += 1
 
-def rozostreni_filtr():
-    radius = 3
-    for x in range(radius, sirka - radius):
-        for y in range(radius, vyska - radius):
-            sousedni_pixely = []
+def rozostreni_filtr(radius=3):
+    x = 0
+    while x < sirka:
+        y = 0
+        while y < vyska:
+            r_total, g_total, b_total = 0, 0, 0
+            pocet_pixelu = 0
             for i in range(-radius, radius + 1):
                 for j in range(-radius, radius + 1):
-                    sousedni_pixely.append(obrazek.getpixel((x + i, y + j)))
-            novy_r = sum(p[0] for p in sousedni_pixely) // len(sousedni_pixely)
-            novy_g = sum(p[1] for p in sousedni_pixely) // len(sousedni_pixely)
-            novy_b = sum(p[2] for p in sousedni_pixely) // len(sousedni_pixely)
-            obrazek.putpixel((x, y), (novy_r, novy_g, novy_b))
+                    if 0 <= x + i < sirka and 0 <= y + j < vyska:
+                        r, g, b = obrazek.getpixel((x+i, y+j))
+                        r_total += r
+                        g_total += g
+                        b_total += b
+                        pocet_pixelu += 1
+            if pocet_pixelu > 0:
+                prumer_r = int(r_total / pocet_pixelu)
+                prumer_g = int(g_total / pocet_pixelu)
+                prumer_b = int(b_total / pocet_pixelu)
+                obrazek.putpixel((x, y), (prumer_r, prumer_g, prumer_b))
+            y += 1
+        x += 1
 
 def detekce_hran_filtr():
     obrazek_bw = obrazek.convert("L")
