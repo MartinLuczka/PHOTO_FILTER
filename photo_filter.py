@@ -202,6 +202,8 @@ while True:
     obrazek = Image.open("oblicej.jpg")
     sirka, vyska = obrazek.size
 
+    mix_filtru = False
+
     volba = input(
     """Vyberte si jednu z následujících možností:\n
     0) z nabízených možností vybrat náhodně
@@ -219,7 +221,9 @@ while True:
     12) filtr pro zvýšení saturace a kontrastu
     13) filtr ztmavení
     ----------------------------------------------
-    14) Ukončení aplikace
+    14) mix filtrů
+    ----------------------------------------------
+    15) Ukončení aplikace
     \n""")
 
     if volba == "0":
@@ -265,6 +269,91 @@ while True:
         ztmaveni_filtr()
 
     elif volba == "14":
+        mix_filtru == True
+        while True:
+            volba = input(
+            """Vyberte si jednu z následujících možností:\n
+            0) z nabízených možností vybrat náhodně
+            1) filtr barev č.1
+            2) filtr barev č.2
+            3) filtr barev č.3
+            4) černobílý filtr
+            5) negativní filtr
+            6) stará fotografie filtr
+            7) filtr rozostření
+            8) filtr detekce hran
+            9) náhodně barevný filtr
+            10) filtr pixelizace
+            11) filtr zesvětlení
+            12) filtr pro zvýšení saturace a kontrastu
+            13) filtr ztmavení
+            ----------------------------------------------
+            14) Ukončení mixu filtrů
+            \n""")
+
+            if volba == "0":
+                volba = str(random.randint(1, 13))
+
+            if volba == "1":
+                barevne_schema1()
+
+            elif volba == "2":
+                barevne_schema2()
+
+            elif volba == "3":
+                barevne_schema3()
+
+            elif volba == "4":
+                cerna_bila()
+
+            elif volba == "5":
+                negativni_filtr()
+
+            elif volba == "6":
+                stara_fotografie_filtr()
+
+            elif volba == "7":
+                rozostreni_filtr()
+
+            elif volba == "8":
+                detekce_hran_filtr()
+
+            elif volba == "9":
+                nahodna_barva()
+
+            elif volba == "10":
+                pixelizace_filtr()
+
+            elif volba == "11":
+                zesvetleni_filtr()
+
+            elif volba == "12":
+                zvyseni_saturace_a_kontrastu()
+
+            elif volba == "13":
+                ztmaveni_filtr()
+
+            elif volba == "14":
+                print("Mix filtrů se ukončuje...")
+                break
+
+            else:
+                print("Chyba vstupu...Zkuste to znovu")
+
+            print("Vaše volba filtru se aplikuje na obrázek...")
+
+            obrazek.show()
+
+            volba = 0
+
+            ulozeni = input("Chcete svůj vygenerovaný obrázek uložit? (ANO/NE)\n").lower()
+
+            if ulozeni == "ano":
+                nazev_souboru = input("Jak chcete, aby se Vaše upravená fotka jmenovala?\n")
+                obrazek.save(f"{nazev_souboru}.jpg", quality=100)
+
+
+    elif volba == "15":
         print("\nDěkujeme za používání naší aplikace!")
         break
 
@@ -274,14 +363,16 @@ while True:
 
     print("Vaše volba filtru se aplikuje na obrázek...")
 
-    obrazek.show()
+    if mix_filtru == False:
 
-    volba = 0
+        obrazek.show()
 
-    ulozeni = input("Chcete svůj vygenerovaný obrázek uložit? (ANO/NE)\n").lower()
+        volba = 0
 
-    if ulozeni == "ano":
-        nazev_souboru = input("Jak chcete, aby se Vaše fotka jmenovala?\n")
-        obrazek.save(f"{nazev_souboru}.jpg")
+        ulozeni = input("Chcete svůj vygenerovaný obrázek uložit? (ANO/NE)\n").lower()
+
+        if ulozeni == "ano":
+            nazev_souboru = input("Jak chcete, aby se Vaše upravená fotka jmenovala?\n")
+            obrazek.save(f"{nazev_souboru}.jpg", quality=100)
 
 
