@@ -196,7 +196,7 @@ def ztmaveni_filtr(faktor=0.5):
             new_b = max(0, int(b * faktor))
             obrazek.putpixel((x, y), (new_r, new_g, new_b))
 
-print("Vítejte v programu pro úpravu fotek.")
+print("Vítejte v programu pro úpravu fotek.\n")
 
 while True:
     obrazek = Image.open("oblicej.jpg")
@@ -272,11 +272,16 @@ while True:
         barevne_schema1()
         print("Chyba vstupu...Aplikuje se defaultní filtr")
 
-    print("Vaše volba se připravuje...")
+    print("Vaše volba filtru se aplikuje na obrázek...")
 
     obrazek.show()
 
     volba = 0
 
-# Program se neukončuje hned, bez volby se zvolí nějaký defaultní filtr, generování náhodného filtru, jak by to šlo urychlit ? - velmi vítaný projekt - dobré ohodnocení, v pythonu můžeme měřit dobu vykonání
+    ulozeni = input("Chcete svůj vygenerovaný obrázek uložit? (ANO/NE)\n").lower()
+
+    if ulozeni == "ano":
+        nazev_souboru = input("Jak chcete, aby se Vaše fotka jmenovala?\n")
+        obrazek.save(f"{nazev_souboru}.jpg")
+
 
