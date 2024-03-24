@@ -269,10 +269,11 @@ while True:
         ztmaveni_filtr()
 
     elif volba == "14":
-        mix_filtru == True
+        mix_filtru = True
+        uprava = 0
         while True:
             volba = input(
-            """Vyberte si jednu z následujících možností:\n
+            """Pro namixování nějakého filtru si vyberte z následujících možností:\n
             0) z nabízených možností vybrat náhodně
             1) filtr barev č.1
             2) filtr barev č.2
@@ -290,6 +291,8 @@ while True:
             ----------------------------------------------
             14) Ukončení mixu filtrů
             \n""")
+
+            uprava += 1
 
             if volba == "0":
                 volba = str(random.randint(1, 13))
@@ -334,24 +337,28 @@ while True:
                 ztmaveni_filtr()
 
             elif volba == "14":
-                print("Mix filtrů se ukončuje...")
+                print("Mix filtrů se ukončuje...\n")
                 break
 
             else:
-                print("Chyba vstupu...Zkuste to znovu")
+                print("Chyba vstupu...Zkuste to znovu\n")
 
-            print("Vaše volba filtru se aplikuje na obrázek...")
+            print("Vaše volba filtru se aplikuje na obrázek...\n")
 
             obrazek.show()
 
             volba = 0
 
-            ulozeni = input("Chcete svůj vygenerovaný obrázek uložit? (ANO/NE)\n").lower()
+            if uprava == 1:
+                print("Přidejte ještě aspoň jeden filtr.\n")
 
-            if ulozeni == "ano":
-                nazev_souboru = input("Jak chcete, aby se Vaše upravená fotka jmenovala?\n")
-                obrazek.save(f"{nazev_souboru}.jpg", quality=100)
+            if uprava >= 2:
 
+                ulozeni = input("Chcete svůj vygenerovaný obrázek uložit? (ANO/NE)\n").lower()
+
+                if ulozeni == "ano":
+                    nazev_souboru = input("Jak chcete, aby se Vaše upravená fotka jmenovala?\n")
+                    obrazek.save(f"{nazev_souboru}.jpg", quality=100)
 
     elif volba == "15":
         print("\nDěkujeme za používání naší aplikace!")
@@ -361,9 +368,9 @@ while True:
         barevne_schema1()
         print("Chyba vstupu...Aplikuje se defaultní filtr")
 
-    print("Vaše volba filtru se aplikuje na obrázek...")
-
     if mix_filtru == False:
+
+        print("Vaše volba filtru se aplikuje na obrázek...")
 
         obrazek.show()
 
