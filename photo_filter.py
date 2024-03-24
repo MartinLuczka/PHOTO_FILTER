@@ -1,7 +1,7 @@
 from PIL import Image
 from PIL import ImageFilter
 import random
-obrazek = Image.open("oblicej.jpg")
+obrazek = Image.open("oblicej.jpg") # obrázek popřípadě změnit ještě na řádku 209
 sirka, vyska = obrazek.size
 
 def barevne_schema1():
@@ -369,7 +369,7 @@ while True:
                 ulozeni_fotky()
 
     elif volba == "15":
-        print("\nDěkujeme za používání naší aplikace!")
+        print("\nDěkujeme za používání naší aplikace!\n")
         break
 
     else:
