@@ -24,42 +24,36 @@ def barevne_schema1():
         x += 1
 
 def barevne_schema2():
-    x = 0
-    while x < sirka:
-        y = 0
-        while y < vyska:
-            r, g, b = obrazek.getpixel((x,y))
-            prumer = int((r+g+b)/3)
-            obrazek.putpixel((x,y), (r , b, r))
-            if prumer < 120:
-                obrazek.putpixel((x,y), (57,136,164))
-            elif prumer >= 120 and prumer < 150:
-                obrazek.putpixel((x,y), (203,98,95))
-            elif prumer >= 150 and prumer < 170:
-                obrazek.putpixel((x,y), (103,194,212))
+    for x in range(sirka):
+        for y in range(vyska):
+            r, g, b = obrazek.getpixel((x, y))
+            prumer = (r + g + b) // 3
+            if prumer < 100:
+                obrazek.putpixel((x, y), (11, 72, 107))
+            elif 100 <= prumer < 140:
+                obrazek.putpixel((x, y), (219, 127, 96))
+            elif 140 <= prumer < 180:
+                obrazek.putpixel((x, y), (235, 193, 150))
+            elif 180 <= prumer < 220:
+                obrazek.putpixel((x, y), (148, 194, 174))
             else:
-                obrazek.putpixel((x,y), (208,148,77))
-            y += 1
-        x += 1
+                obrazek.putpixel((x, y), (234, 225, 217))
 
 def barevne_schema3():
-    x = 0
-    while x < sirka:
-        y = 0
-        while y < vyska:
-            r, g, b = obrazek.getpixel((x,y))
-            prumer = int((r+g+b)/3)
-            obrazek.putpixel((x,y), (r , b, r))
-            if prumer < 120:
-                obrazek.putpixel((x,y), (169,94,163))
-            elif prumer >= 120 and prumer < 150:
-                obrazek.putpixel((x,y), (220,58,121))
-            elif prumer >= 150 and prumer < 170:
-                obrazek.putpixel((x,y), (22,134,205))
+    for x in range(sirka):
+        for y in range(vyska):
+            r, g, b = obrazek.getpixel((x, y))
+            prumer = (r + g + b) // 3
+            if prumer < 100:
+                obrazek.putpixel((x, y), (82, 45, 128))
+            elif 100 <= prumer < 140:
+                obrazek.putpixel((x, y), (208, 60, 150))
+            elif 140 <= prumer < 180:
+                obrazek.putpixel((x, y), (34, 169, 202))
+            elif 180 <= prumer < 220:
+                obrazek.putpixel((x, y), (149, 191, 90))
             else:
-                obrazek.putpixel((x,y), (182,230,150))
-            y += 1
-        x += 1
+                obrazek.putpixel((x, y), (11, 72, 107))
 
 def cerna_bila():
     x = 0
@@ -147,25 +141,32 @@ def nahodna_barva():
             y += 1
         x += 1
 
-def efekt_olejove_malby(radius=5):
-    for x in range(radius, sirka - radius):
-        for y in range(radius, vyska - radius):
-            histogram = {}
-            for i in range(-radius, radius + 1):
-                for j in range(-radius, radius + 1):
-                    r, g, b = obrazek.getpixel((x+i, y+j))
-                    barva = (r, g, b)
-                    if barva in histogram:
-                        histogram[barva] += 1
-                    else:
-                        histogram[barva] = 1
-            nejcastejsi_barva = max(histogram, key=histogram.get)
-            obrazek.putpixel((x, y), nejcastejsi_barva)
+def pixelizace_filtr(velikost=10):
+    for x in range(0, sirka, velikost):
+        for y in range(0, vyska, velikost):
+            r_total, g_total, b_total = 0, 0, 0
+            pocet_pixelu = 0
+            for i in range(velikost):
+                for j in range(velikost):
+                    if x + i < sirka and y + j < vyska:
+                        r, g, b = obrazek.getpixel((x + i, y + j))
+                        r_total += r
+                        g_total += g
+                        b_total += b
+                        pocet_pixelu += 1
+            prumer_r = int(r_total / pocet_pixelu)
+            prumer_g = int(g_total / pocet_pixelu)
+            prumer_b = int(b_total / pocet_pixelu)
+            for i in range(velikost):
+                for j in range(velikost):
+                    if x + i < sirka and y + j < vyska:
+                        obrazek.putpixel((x + i, y + j), (prumer_r, prumer_g, prumer_b))
 
 print("Vítejte v programu pro úpravu fotek.")
 
 volba = input(
 """Vyberte si jednu z následujících možností:\n
+0) z nabízených možností vybrat náhodně
 1) filtr barev č.1
 2) filtr barev č.2
 3) filtr barev č.3
@@ -175,7 +176,12 @@ volba = input(
 7) filtr rozostření
 8) filtr detekce hran
 9) náhodně barevný filtr
-10) filtr olejomalby\n""")
+10) filtr pixelizace
+\n""")
+
+if volba == "0":
+    volba = str(random.randint(1, 10))
+    print(volba)
 
 if volba == "1":
     barevne_schema1()
@@ -203,6 +209,9 @@ elif volba == "8":
 
 elif volba == "9":
     nahodna_barva()
+
+elif volba == "10":
+    pixelizace_filtr()
 
 else:
     barevne_schema1()
