@@ -4,6 +4,27 @@ Aplikace sloužící k úpravě fotek pomocí zajímavého barevného uspořád�
 
 - Filtr může kdokoliv volně využít a upravit si ho podle sebe.
 
+## Jak filtr použít?
+
+1) Stáhnětě si ZIP z repozitáře na GitHubu.
+
+2) Tento ZIP si extrahujte do Vámi zvolené složky.
+
+3) Zdrojový kód programu se jmenuje: photo_filter.py
+
+4) Stáhněte/Spustťe si program, ve kterém můžete kód spusit a zadat svou fotku. Popřípadě si kód můžete vyzkoušet v nějakém online prostředí skrze internetové připojení.
+Fotku mějte asi nejlépe přímo ve složce, ve které máte soubory repozitáře. Nebo jen vyzkoušejte program s obrázkem *oblicej.png*.
+
+5) V případě chyby doinstalujte potřebná rozšíření či knihovny.
+
+V našem případě budeme pravděpodobně muset doinstalovat knihovnu PIL/Pillow.
+
+Pro nainstalování knihovny si otevřete terminál, popřípadě příkazový řádek. **Zadejte do nich tento příkaz:**
+
+```python
+pip install pillow
+```
+
 ## Funkce aplikace
 
 ### Úvod do aplikace
@@ -38,7 +59,7 @@ Před spuštěním uživatel musí přepsat/ponechat zdroj obrázku, se kterým 
 
 13) Filtr fotku ztmaví
 
-14) Tato volba uživatele dostane do prostředí, ve kterém bude moct nakombinovat na jeden obrázek více filtrů najednou. Exportovat bude moct po 2 a více aplikovaných filtrech.
+14) Tato volba uživatele dostane do prostředí, ve kterém bude moct nakombinovat na jeden obrázek více filtrů najednou. Exportovat budete moct po 2 a více aplikovaných filtrech.
 
 ### Ukončení
 
