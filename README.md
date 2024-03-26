@@ -4,6 +4,8 @@ Aplikace sloužící k úpravě fotek pomocí zajímavého barevného uspořád�
 
 - Filtr může kdokoliv volně využít a upravit si ho podle sebe.
 
+- Pokud chcete filtr pouze vyzkoušet, tak můžeme volit ze 3 obrázků, které jsou součástí tohoto repozitáře.
+
 ## Jak filtr použít?
 
 1) Stáhnětě si ZIP z repozitáře na GitHubu.
@@ -13,7 +15,10 @@ Aplikace sloužící k úpravě fotek pomocí zajímavého barevného uspořád�
 3) Zdrojový kód programu se jmenuje: photo_filter.py
 
 4) Stáhněte/Spustťe si program, ve kterém můžete kód spusit a zadat svou fotku. Popřípadě si kód můžete vyzkoušet v nějakém online prostředí skrze internetové připojení.
-Fotku mějte asi nejlépe přímo ve složce, ve které máte soubory repozitáře. Nebo jen vyzkoušejte program s obrázkem *oblicej.png*.
+Fotku mějte asi nejlépe přímo ve složce, ve které máte soubory repozitáře. Nebo jen vyzkoušejte program s obrázkem *oblicej.png*, popřípadě s jiným na výběr.
+
+> [!CAUTION]
+> Při zadávání cesty svého vlastního obrázku si dávejte pozor na jeho umístěný. Pro správnou funkci se musí uvést korektní místo umístění.
 
 5) V případě chyby doinstalujte potřebná rozšíření či knihovny.
 
